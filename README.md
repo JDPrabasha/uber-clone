@@ -9,6 +9,21 @@ Features:
 - View map and disance between locations
 - Check pricing
 
+Screens:
+
+<div style={display:flex flex-wrap:wrap }>
+     
+ <img src="https://user-images.githubusercontent.com/62155402/168645596-0261eac9-e69a-446f-a4cd-c1d31c6f7c0e.jpg" width="300">
+ <img src="https://user-images.githubusercontent.com/62155402/168645609-5d182350-de5e-4e9b-b4fb-bc94398b3576.jpg" width="300">
+   <img src="https://user-images.githubusercontent.com/62155402/168645613-8c3e6100-32bd-4429-9637-3aa0cd3dbbc6.jpg" width="300">
+   <img src="https://user-images.githubusercontent.com/62155402/168645617-235018b2-72e9-4b9d-b2a5-46c1633ea448.jpg" width="300">
+   
+     
+</div>
+
+
+
+
 APIs used:
 
 - Google Maps API
