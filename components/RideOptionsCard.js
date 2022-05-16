@@ -9,6 +9,8 @@ import { FlatList } from "react-native";
 import { Image } from "react-native";
 import { useSelector } from "react-redux";
 import { selectTravelTimeInformation } from "../slices/navSlice";
+import "intl";
+import "intl/locale-data/jsonp/en";
 
 const data = [
   {
