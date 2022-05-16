@@ -1,6 +1,6 @@
 import { View, Text } from "react-native";
 import React from "react";
-import { FlatList, Image, TouchableOpacity } from "react-native-web";
+import { FlatList, Image, TouchableOpacity } from "react-native";
 import tw from "twrnc";
 import { AntDesign } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
@@ -26,6 +26,7 @@ const NavOptions = () => {
     <FlatList
       data={data}
       horizontal
+      showsHorizontalScrollIndicator={false}
       keyExtractor={(item) => item.id}
       renderItem={({ item }) => (
         <TouchableOpacity
