@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from "react-native";
 import React, { useState } from "react";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { SafeAreaView } from "react-native";
 import tw from "twrnc";
 import { TouchableOpacity } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
@@ -43,7 +43,7 @@ const RideOptionsCard = () => {
         >
           <FontAwesome5 name="chevron-left" size={16} color="black" />
         </TouchableOpacity>
-        <Text style={tw`text-xl pt-5 pb-2 text-center`}>Select a Ride</Text>
+        <Text style={tw`text-xl pt-3 pb-2 text-center`}>Select a Ride</Text>
       </View>
       <FlatList
         data={data}
@@ -71,6 +71,17 @@ const RideOptionsCard = () => {
           </TouchableOpacity>
         )}
       />
+      <View>
+        <TouchableOpacity disabled={!selected}>
+          <Text
+            style={tw`text-xl text-center bg-black text-white p-3 ${
+              !selected && "bg-gray-300"
+            }`}
+          >
+            Choose {selected?.title}
+          </Text>
+        </TouchableOpacity>
+      </View>
     </SafeAreaView>
   );
 };

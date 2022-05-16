@@ -19,6 +19,22 @@ const Map = () => {
       [origin, destination];
   });
 
+  useEffect(() => {
+    if (!origin || !destination) return;
+    const getTravelTime = async () => {
+      await fetch(
+        `https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=${origin.description}&destinations=${destination.description}&key=${GOOGLE_MAPS_APIKEY}`
+      )
+        .then((res) => {
+          res.json();
+        })
+        .then((data) => {
+          console.log("data " + data);
+        });
+    };
+    getTravelTime();
+  }, [origin, destination, GOOGLE_MAPS_APIKEY]);
+
   return (
     <MapView
       ref={mapRef}
