@@ -10,6 +10,7 @@ import NavFavorites from "./NavFavorites";
 import { Ionicons } from "@expo/vector-icons";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native";
+import HideWithKeyboard from "react-native-hide-with-keyboard";
 
 const NavigateCard = () => {
   const dispatch = useDispatch();
@@ -42,24 +43,26 @@ const NavigateCard = () => {
           nearbyPlacesAPI="GooglePlacesSearch"
         />
       </View>
-      <NavFavorites />
-      <View
-        style={tw`flex flex-row bg-white justify-evenly py-2 mt-auto border-t border-gray-100`}
-      >
-        <TouchableOpacity
-          onPress={() => navigation.navigate("RideOptionsCard")}
-          style={tw`flex flex-row bg-black justify-between w-24 px-4 py-3 rounded-full`}
+      <HideWithKeyboard>
+        <NavFavorites />
+        <View
+          style={tw`flex flex-row bg-white justify-evenly py-2 mt-auto border-t border-gray-100`}
         >
-          <FontAwesome5 name="car" size={16} color="white" />
-          <Text style={tw`text-white text-center`}>Rides</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={tw`flex flex-row justify-between w-24 px-4 py-3 rounded-full`}
-        >
-          <Ionicons name="fast-food-outline" size={16} color="black" />
-          <Text style={tw`text-center`}>Eats</Text>
-        </TouchableOpacity>
-      </View>
+          <TouchableOpacity
+            onPress={() => navigation.navigate("RideOptionsCard")}
+            style={tw`flex flex-row bg-black justify-between w-24 px-4 py-3 rounded-full`}
+          >
+            <FontAwesome5 name="car" size={16} color="white" />
+            <Text style={tw`text-white text-center`}>Rides</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={tw`flex flex-row justify-between w-24 px-4 py-3 rounded-full`}
+          >
+            <Ionicons name="fast-food-outline" size={16} color="black" />
+            <Text style={tw`text-center`}>Eats</Text>
+          </TouchableOpacity>
+        </View>
+      </HideWithKeyboard>
     </SafeAreaView>
   );
 };
