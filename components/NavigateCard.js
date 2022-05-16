@@ -6,6 +6,10 @@ import { GOOGLE_MAPS_APIKEY } from "@env";
 import { useDispatch } from "react-redux";
 import { setDestination } from "../slices/navSlice";
 import { useNavigation } from "@react-navigation/native";
+import NavFavorites from "./NavFavorites";
+import { Ionicons } from "@expo/vector-icons";
+import { FontAwesome5 } from "@expo/vector-icons";
+import { TouchableOpacity } from "react-native";
 
 const NavigateCard = () => {
   const dispatch = useDispatch();
@@ -37,6 +41,24 @@ const NavigateCard = () => {
           debounce={400}
           nearbyPlacesAPI="GooglePlacesSearch"
         />
+      </View>
+      <NavFavorites />
+      <View
+        style={tw`flex flex-row bg-white justify-evenly py-2 mt-auto border-t border-gray-100`}
+      >
+        <TouchableOpacity
+          onPress={() => navigation.navigate("RideOptionsCard")}
+          style={tw`flex flex-row bg-black justify-between w-24 px-4 py-3 rounded-full`}
+        >
+          <FontAwesome5 name="car" size={16} color="white" />
+          <Text style={tw`text-white text-center`}>Rides</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={tw`flex flex-row justify-between w-24 px-4 py-3 rounded-full`}
+        >
+          <Ionicons name="fast-food-outline" size={16} color="black" />
+          <Text style={tw`text-center`}>Eats</Text>
+        </TouchableOpacity>
       </View>
     </SafeAreaView>
   );
