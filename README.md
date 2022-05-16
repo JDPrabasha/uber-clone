@@ -39,4 +39,10 @@ Add your key in the following format inside the file created:
 
 Next, within the root directory, run
 
+`yarn install`
+
+to install the required dependancies. Then run
+
 `expo start`
+
+to serve the application
