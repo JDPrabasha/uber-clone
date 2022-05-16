@@ -2,15 +2,21 @@ import { StyleSheet, Text, View } from "react-native";
 import React, { useRef, useEffect } from "react";
 import MapView, { Marker } from "react-native-maps";
 import tw from "twrnc";
-import { useSelector } from "react-redux";
-import { selectDestination, selectOrigin } from "../slices/navSlice";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  selectDestination,
+  selectOrigin,
+  setTravelTimeInformation,
+} from "../slices/navSlice";
 import MapViewDirections from "react-native-maps-directions";
 import { GOOGLE_MAPS_APIKEY } from "@env";
+import axios from "axios";
 
 const Map = () => {
   const origin = useSelector(selectOrigin);
   const destination = useSelector(selectDestination);
   const mapRef = useRef(null);
+  const dispatch = useDispatch();
   useEffect(() => {
     if (!origin || !destination) return;
     mapRef.current.fitToSuppliedMarkers(["origin", "destination"], {
@@ -22,15 +28,19 @@ const Map = () => {
   useEffect(() => {
     if (!origin || !destination) return;
     const getTravelTime = async () => {
-      await fetch(
-        `https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=${origin.description}&destinations=${destination.description}&key=${GOOGLE_MAPS_APIKEY}`
-      )
-        .then((res) => {
-          res.json();
-        })
-        .then((data) => {
-          console.log("data " + data);
-        });
+      const url = `https://maps.googleapis.com/maps/api/distancematrix/json?origins=${origin.description}&destinations=${destination.description}&units=imperial&key=${GOOGLE_MAPS_APIKEY}`;
+      const response = await axios.get(url);
+
+      console.log(response.data);
+      dispatch(setTravelTimeInformation(response.data.rows[0].elements[0]));
+
+      // .then((res) => {
+      //   console.log(res);
+      //   res.json();
+      // })
+      // .then((data) => {
+      //   console.log("data " + data);
+      // });
     };
     getTravelTime();
   }, [origin, destination, GOOGLE_MAPS_APIKEY]);

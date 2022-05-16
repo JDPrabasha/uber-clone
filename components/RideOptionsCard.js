@@ -7,6 +7,8 @@ import { FontAwesome5 } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { FlatList } from "react-native";
 import { Image } from "react-native";
+import { useSelector } from "react-redux";
+import { selectTravelTimeInformation } from "../slices/navSlice";
 
 const data = [
   {
@@ -32,6 +34,8 @@ const data = [
 const RideOptionsCard = () => {
   const navigation = useNavigation();
   const [selected, setSelected] = useState(null);
+  const travelTimeInformation = useSelector(selectTravelTimeInformation);
+
   return (
     <SafeAreaView style={tw`bg-white flex-grow`}>
       <View>
@@ -43,7 +47,9 @@ const RideOptionsCard = () => {
         >
           <FontAwesome5 name="chevron-left" size={16} color="black" />
         </TouchableOpacity>
-        <Text style={tw`text-xl pt-3 pb-2 text-center`}>Select a Ride</Text>
+        <Text style={tw`text-xl pt-3 pb-2 text-center`}>
+          Select a Ride - {travelTimeInformation?.distance.text}
+        </Text>
       </View>
       <FlatList
         data={data}
