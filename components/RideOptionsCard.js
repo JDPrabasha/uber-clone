@@ -31,6 +31,8 @@ const data = [
   },
 ];
 
+const SURGE_RATE = 1.5;
+
 const RideOptionsCard = () => {
   const navigation = useNavigation();
   const [selected, setSelected] = useState(null);
@@ -56,7 +58,7 @@ const RideOptionsCard = () => {
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
           <TouchableOpacity
-            style={tw`flex flex-row justify-between px-10 items-center ${
+            style={tw`flex flex-row justify-between px-7 items-center ${
               item.id === selected?.id && "bg-gray-200"
             }`}
             onPress={() => {
@@ -71,9 +73,21 @@ const RideOptionsCard = () => {
             />
             <View style={tw`-ml-6`}>
               <Text style={tw`text-xl font-semibold`}>{item.title}</Text>
-              <Text>Travel time ...</Text>
+              <Text style={tw`text-xs`}>
+                {travelTimeInformation?.duration.text} Travel Time
+              </Text>
             </View>
-            <Text style={tw`text-xl`}>$699</Text>
+            <Text style={tw`text-xl`}>
+              {new Intl.NumberFormat("en-gb", {
+                style: "currency",
+                currency: "GBP",
+              }).format(
+                (item.multiplier *
+                  SURGE_RATE *
+                  travelTimeInformation?.distance.value) /
+                  100
+              )}
+            </Text>
           </TouchableOpacity>
         )}
       />
